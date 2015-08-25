@@ -28,7 +28,11 @@
 #
 
 NAME = QDeviceWatcher
-#STATICLINK = 1
+
+android {
+    STATICLINK = 1
+}
+
 !isEmpty(LIB$$upper($$NAME)_PRI_INCLUDED): {
         error("lib$${NAME}.pri already included")
         unset(NAME)
