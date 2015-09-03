@@ -31,7 +31,11 @@ _OS =
 _ARCH =
 _EXTRA =
 
-unix {
+android {
+    _OS = _android
+}
+else {
+    unix {
         _OS = _unix
         macx: _OS = _mac
         else:*linux*: _OS = _linux
@@ -42,11 +46,12 @@ unix {
         } else:*meego*: _OS = _meego
         !isEmpty(MEEGO_EDITION): _OS = _$$MEEGO_EDITION
 # QMAKE_RPATHDIR will be ignored if QMAKE_LFLAGS_RPATH is not defined. e.g. qt4.8 unsupported/macx-clang-libc++
-  isEmpty(QMAKE_LFLAGS_RPATH): QMAKE_LFLAGS_RPATH=-Wl,-rpath,
-} else:wince* {
-        _OS = _wince
-} else:win32 { #true for wince
-        _OS = _win
+      isEmpty(QMAKE_LFLAGS_RPATH): QMAKE_LFLAGS_RPATH=-Wl,-rpath,
+    } else:wince* {
+            _OS = _wince
+    } else:win32 { #true for wince
+            _OS = _win
+    }
 }
 #*arm*: _ARCH = $${_ARCH}_arm
 contains(QT_ARCH, arm.*) {
