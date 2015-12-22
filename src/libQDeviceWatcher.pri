@@ -59,7 +59,7 @@ TEMPLATE -= fakelib
 
 isEmpty(PROJECTROOT): PROJECTROOT = $$PWD/..
 include($${PROJECTROOT}/common.pri)
-preparePaths($$OUT_PWD/../out)
+preparePaths($$OUT_PWD/../$${QT_VERSION})
 CONFIG += depend_includepath #?
 mac_framework: PROJECT_TARGETNAME = $$NAME
 
