@@ -33,6 +33,11 @@ android {
     STATICLINK = 1
 }
 
+osx {
+    # this is a 5.7 regression fixed in 5.7.1 see QTBUG-54212
+    QMAKE_STRIP = strip -x
+}
+
 !isEmpty(LIB$$upper($$NAME)_PRI_INCLUDED): {
         error("lib$${NAME}.pri already included")
         unset(NAME)

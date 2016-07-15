@@ -5,6 +5,15 @@ COMPILER_VERSION=unknown
 android {
     COMPILER_VERSION=gcc4.9
 }
+else {
+    linux {
+        COMPILER_VERSION=gcc5.3.1
+    }
+}
+
+osx {
+    COMPILER_VERSION=clang
+}
 
 windows {
     *-g++* {
