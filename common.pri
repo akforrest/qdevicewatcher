@@ -441,19 +441,19 @@ defineTest(getBuildRoot) {
 #for Qt2, Qt3 which does not have QT_VERSION. Qt4: $$[QT_VERSION]
 defineTest(preparePaths) {
     getBuildRoot($$1, $$2)
-    MOC_DIR = $$BUILD_DIR/.moc/$${QT_VERSION}/$${USR_VERSION}/$$TARGET
-    RCC_DIR = $$BUILD_DIR/.rcc/$${QT_VERSION}/$${USR_VERSION}/$$TARGET
-    UI_DIR  = $$BUILD_DIR/.ui/$${QT_VERSION}/$${USR_VERSION}/$$TARGET
+    MOC_DIR = $$BUILD_DIR/.moc/$${QT_VERSION}/$${COMPILER_VERSION}/$$TARGET
+    RCC_DIR = $$BUILD_DIR/.rcc/$${QT_VERSION}/$${COMPILER_VERSION}/$$TARGET
+    UI_DIR  = $$BUILD_DIR/.ui/$${QT_VERSION}/$${COMPILER_VERSION}/$$TARGET
     #obj is platform dependent
-    OBJECTS_DIR = $$qtLongName($$BUILD_DIR/.obj/$${QT_VERSION}/$${USR_VERSION}/$$TARGET)
+    OBJECTS_DIR = $$qtLongName($$BUILD_DIR/.obj/$${QT_VERSION}/$${COMPILER_VERSION}/$$TARGET)
 #before target name changed
     isEqual(TEMPLATE, app) {
-        DESTDIR = $$BUILD_DIR/$${USR_VERSION}/bin
+        DESTDIR = $$BUILD_DIR/$${COMPILER_VERSION}/bin
 #	TARGET = $$qtLongName($$TARGET)
         EXE_EXT =
         win32: EXE_EXT = .exe
         CONFIG(release, debug|release): !isEmpty(QMAKE_STRIP): QMAKE_POST_LINK = -$$QMAKE_STRIP $$DESTDIR/$${TARGET}$${EXE_EXT} #.exe in win
-    } else: DESTDIR = $$qtLongName($$BUILD_DIR/$${USR_VERSION}/lib)
+    } else: DESTDIR = $$qtLongName($$BUILD_DIR/$${COMPILER_VERSION}/lib)
     !build_pass {
         !isEmpty(PROJECTROOT) {
             TRANSLATIONS *= i18n/$${TARGET}_zh_CN.ts
