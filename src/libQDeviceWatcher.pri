@@ -113,9 +113,9 @@ DEPENDPATH *= $$PROJECT_SRCPATH
         }
 
         shared {
-        !CONFIG(plugin) {
-            !isEqual(DESTDIR, $$BUILD_DIR/$${COMPILER_VERSION}/bin): DLLDESTDIR = $$BUILD_DIR/$${COMPILER_VERSION}/bin #copy shared lib there
-        }
+        #!CONFIG(plugin) {
+        #    !isEqual(DESTDIR, $$BUILD_DIR/$${COMPILER_VERSION}/bin): DLLDESTDIR = $$BUILD_DIR/$${COMPILER_VERSION}/bin #copy shared lib there
+        #}
                 #CONFIG(release, debug|release): !isEmpty(QMAKE_STRIP): QMAKE_POST_LINK = -$$QMAKE_STRIP $$PROJECT_LIBDIR/$$qtSharedLib($$NAME)
                 #copy from the pro creator creates.
                 symbian {

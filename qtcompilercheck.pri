@@ -125,13 +125,13 @@ else {
     }
 }
 
-BUILD_PATH = $$PWD/_g/$${DRMODE}-$${QT_VERSION}-$${COMPILER_VERSION}-$${TARGET_OS}
+BUILD_PATH = _g/$${DRMODE}-$${QT_VERSION}-$${COMPILER_VERSION}-$${TARGET_OS}
 
-MOC_DIR = $${BUILD_PATH}/_moc
-OBJECTS_DIR = $${BUILD_PATH}/_obj
-DESTDIR = $${BUILD_PATH}/bin
-UI_DIR = $${BUILD_PATH}/_ui
-RCC_DIR = $${BUILD_PATH}/_rcc
+MOC_DIR = $$PWD/$${BUILD_PATH}/_moc
+OBJECTS_DIR = $$PWD/$${BUILD_PATH}/_obj
+DESTDIR = $$PWD/$${BUILD_PATH}/bin
+UI_DIR = $$PWD/$${BUILD_PATH}/_ui
+RCC_DIR = $$PWD/$${BUILD_PATH}/_rcc
 
 message($${QMAKESPEC})
 message(qt compiler checks: $${COMPILER_VERSION})
