@@ -9,6 +9,8 @@ staticlib|isEqual(STATICLINK, 1): DEFINES += BUILD_QDEVICEWATCHER_STATIC
 
 unix {
   macx {
+    QMAKE_CXXFLAGS += -mmacosx-version-min=10.7 -std=c++11 -stdlib=libc++
+    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.11
     SOURCES += qdevicewatcher_mac.cpp
     LIBS += -framework DiskArbitration -framework Foundation
   } else {
