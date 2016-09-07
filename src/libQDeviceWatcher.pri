@@ -63,13 +63,13 @@ PROJECT_TARGETNAME = $$qtLibraryTarget($$NAME)
 TEMPLATE -= fakelib
 
 isEmpty(PROJECTROOT): PROJECTROOT = $$PWD/..
-include($${PROJECTROOT}/common.pri)
-preparePaths($$OUT_PWD/../$${QT_VERSION})
+#include($${PROJECTROOT}/common.pri)
+#preparePaths($$OUT_PWD/../$${QT_VERSION})
 CONFIG += depend_includepath #?
 mac_framework: PROJECT_TARGETNAME = $$NAME
 
 PROJECT_SRCPATH = $$PWD
-PROJECT_LIBDIR = $$qtLongName($$BUILD_DIR/$${COMPILER_VERSION}/lib)
+PROJECT_LIBDIR = $${DESTDIR} #$$qtLongName($$BUILD_DIR/$${COMPILER_VERSION}/lib)
 INCLUDEPATH *= $$PROJECT_SRCPATH $$PROJECT_SRCPATH/.. $$PROJECT_SRCPATH/$$NAME
 DEPENDPATH *= $$PROJECT_SRCPATH
 #QMAKE_LFLAGS_RPATH += #will append to rpath dir
@@ -113,10 +113,10 @@ DEPENDPATH *= $$PROJECT_SRCPATH
         }
 
         shared {
-        !CONFIG(plugin) {
-            !isEqual(DESTDIR, $$BUILD_DIR/$${COMPILER_VERSION}/bin): DLLDESTDIR = $$BUILD_DIR/$${COMPILER_VERSION}/bin #copy shared lib there
-        }
-                CONFIG(release, debug|release): !isEmpty(QMAKE_STRIP): QMAKE_POST_LINK = -$$QMAKE_STRIP $$PROJECT_LIBDIR/$$qtSharedLib($$NAME)
+        #!CONFIG(plugin) {
+        #    !isEqual(DESTDIR, $$BUILD_DIR/$${COMPILER_VERSION}/bin): DLLDESTDIR = $$BUILD_DIR/$${COMPILER_VERSION}/bin #copy shared lib there
+        #}
+                #CONFIG(release, debug|release): !isEmpty(QMAKE_STRIP): QMAKE_POST_LINK = -$$QMAKE_STRIP $$PROJECT_LIBDIR/$$qtSharedLib($$NAME)
                 #copy from the pro creator creates.
                 symbian {
                         MMP_RULES += EXPORTUNFROZEN
@@ -137,7 +137,7 @@ DEPENDPATH *= $$PROJECT_SRCPATH
                 INSTALLS += target
         }
 }
-!no_rpath:!cross_compile:set_rpath($$PROJECT_LIBDIR)
+#!no_rpath:!cross_compile:set_rpath($$PROJECT_LIBDIR)
 
 unset(LIB_VERSION)
 unset(PROJECT_SRCPATH)
