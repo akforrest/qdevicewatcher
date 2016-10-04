@@ -66,10 +66,10 @@ windows {
 }
 
 CONFIG(release, debug|release) {
-    DRMODE = release
+    DRMODE = r
 }
 CONFIG(debug, debug|release) {
-    DRMODE = debug
+    DRMODE = d
 }
 
 CURRENT_BUILD_OS = $$(OS)
@@ -95,7 +95,7 @@ contains(CURRENT_BUILD_OS, Windows_NT){
 }
 
 android {
-    TARGET_OS = android
+    TARGET_OS = a
 }
 else {
 
