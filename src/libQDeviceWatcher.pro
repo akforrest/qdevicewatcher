@@ -8,7 +8,7 @@ include(../qtcompilercheck.pri)
 staticlib|isEqual(STATICLINK, 1): DEFINES += BUILD_QDEVICEWATCHER_STATIC
 
 
-unix {
+unix:!macx {
     SOURCES += qdevicewatcher_linux.cpp
 }
 else {
