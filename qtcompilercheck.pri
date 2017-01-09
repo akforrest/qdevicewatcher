@@ -45,7 +45,11 @@ windows {
     }
     *-msvc* {
         COMPILER_VERSION=unknownMSVC
-        MSVC_VER = $$(VisualStudioVersion)
+
+        isEmpty(MSVC_VER) {
+            message("Finding MSVC_VER")
+            MSVC_VER = $$(VisualStudioVersion)
+        }
 
         message(MSVC_VER: $${MSVC_VER});
 
@@ -76,8 +80,6 @@ CURRENT_BUILD_OS = $$(OS)
 contains(CURRENT_BUILD_OS, Windows_NT){
     message("Windows build machine")
     BUILD_LIBRARIES_ROOT = C:/Buildbot/lib
-    DEFINES += BUILDTIME=\\\"$$system('time/T')\\\"
-    DEFINES += BUILDDATE=\\\"$$system('echo %date%')\\\"
 }else{
     CURRENT_HOME = $$(HOME)
     message(Current Home: $$CURRENT_HOME)
@@ -90,8 +92,6 @@ contains(CURRENT_BUILD_OS, Windows_NT){
         CURRENT_BUILD_OS = OSX
         BUILD_LIBRARIES_ROOT = /Users/$$(USER)/dev/sahara/lib
     }
-    DEFINES += BUILDTIME=\\\"$$system(date '+%H:%M.%s')\\\"
-    DEFINES += BUILDDATE=\\\"$$system(date '+%d/%m/%y')\\\"
 }
 
 android {
@@ -127,11 +127,13 @@ else {
 
 BUILD_PATH = _g/$${DRMODE}-$${QT_VERSION}-$${COMPILER_VERSION}-$${TARGET_OS}
 
-MOC_DIR = $$PWD/$${BUILD_PATH}/_moc
-OBJECTS_DIR = $$PWD/$${BUILD_PATH}/_obj
+MOC_DIR = $$PWD/$${BUILD_PATH}/_m
+OBJECTS_DIR = $$PWD/$${BUILD_PATH}/_o
 DESTDIR = $$PWD/$${BUILD_PATH}/bin
-UI_DIR = $$PWD/$${BUILD_PATH}/_ui
-RCC_DIR = $$PWD/$${BUILD_PATH}/_rcc
+UI_DIR = $$PWD/$${BUILD_PATH}/_u
+UI_SOURCES_DIR = $$PWD/$${BUILD_PATH}/_u
+RCC_DIR = $$PWD/$${BUILD_PATH}/_r
 
-message($${QMAKESPEC})
-message(qt compiler checks: $${COMPILER_VERSION})
+message("QMAKESPEC:" $${QMAKESPEC})
+message(Compiler version: $${COMPILER_VERSION})
+message(Qt version: $${QT_VERSION})
