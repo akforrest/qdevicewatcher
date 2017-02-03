@@ -22,7 +22,7 @@ else {
     }
 }
 
-osx {
+osx|ios {
     COMPILER_VERSION=clang
 }
 
@@ -137,3 +137,4 @@ RCC_DIR = $$PWD/$${BUILD_PATH}/_r
 message("QMAKESPEC:" $${QMAKESPEC})
 message(Compiler version: $${COMPILER_VERSION})
 message(Qt version: $${QT_VERSION})
+message(Dependency root: $${BUILD_LIBRARIES_ROOT})
