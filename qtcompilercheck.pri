@@ -60,7 +60,9 @@ windows {
             COMPILER_VERSION=msvc2013
         }
 
-        contains(QMAKE_TARGET.arch, x86_64){
+        message(QT_ARCH: $${QT_ARCH});
+
+        contains(QT_ARCH, x86_64){
             COMPILER_VERSION=$${COMPILER_VERSION}_64
         }
         else {
