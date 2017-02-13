@@ -129,14 +129,18 @@ else {
 
 BUILD_PATH = _g/$${DRMODE}-$${QT_VERSION}-$${COMPILER_VERSION}-$${TARGET_OS}
 
-MOC_DIR = $$PWD/$${BUILD_PATH}/_m
-OBJECTS_DIR = $$PWD/$${BUILD_PATH}/_o
-DESTDIR = $$PWD/$${BUILD_PATH}/bin
-UI_DIR = $$PWD/$${BUILD_PATH}/_u
-UI_SOURCES_DIR = $$PWD/$${BUILD_PATH}/_u
-RCC_DIR = $$PWD/$${BUILD_PATH}/_r
+# outputs paths should be in _g but relative to $${OUT_PWD} to avoid Makefile relative path issues
+BASE_BUILD_DIR = $$relative_path($${_PRO_FILE_PWD_}/$${BUILD_PATH}, $${OUT_PWD})
+
+MOC_DIR = $${BASE_BUILD_DIR}/_m
+OBJECTS_DIR = $${BASE_BUILD_DIR}/_o
+DESTDIR = $${BASE_BUILD_DIR}/bin
+UI_DIR = $${BASE_BUILD_DIR}/_u
+UI_SOURCES_DIR = $${BASE_BUILD_DIR}/_u
+RCC_DIR = $${BASE_BUILD_DIR}/_r
 
 message("QMAKESPEC:" $${QMAKESPEC})
 message(Compiler version: $${COMPILER_VERSION})
 message(Qt version: $${QT_VERSION})
 message(Dependency root: $${BUILD_LIBRARIES_ROOT})
+message(Root Build Path: $${BASE_BUILD_DIR})
