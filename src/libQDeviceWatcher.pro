@@ -2,6 +2,9 @@ TEMPLATE = lib
 QT -= gui
 CONFIG *= qdevicewatcher-buildlib
 
+message()
+message("----------------- QDeviceWatcher -----------------")
+
 include(../qtcompilercheck.pri)
 
 !include(libQDeviceWatcher.pri): error(could not find ibQDeviceWatcher.pri)
